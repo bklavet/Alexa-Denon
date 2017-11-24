@@ -1,0 +1,31 @@
+Volume Up:
+http://<DENON AVR IP ADDRESS>/MainZone/index.put.asp?cmd0=PutMasterVolumeBtn/>
+
+Volume Down:
+http://<DENON AVR IP ADDRESS>/MainZone/index.put.asp?cmd0=PutMasterVolumeBtn/<
+
+Set volume at 35 (-45=35-80):
+http://<DENON AVR IP ADDRESS>/MainZone/index.put.asp?cmd0=PutMasterVolumeSet/-45.0
+
+Volume Mute:
+http://<DENON AVR IP ADDRESS>/MainZone/index.put.asp?cmd0=PutMasterVolumeMute/>off
+http://<DENON AVR IP ADDRESS>/MainZone/index.put.asp?cmd0=PutMasterVolumeMute/>on
+
+Select source - SAT/CBL:
+http://<DENON AVR IP ADDRESS>/MainZone/index.put.asp?cmd0=PutZone_InputFunction%2FSAT%2FCBL
+
+Select source - DVD:
+http://<DENON AVR IP ADDRESS>/MainZone/index.put.asp?cmd0=PutZone_InputFunction%2FDVD
+
+Select source - Blu-Ray:
+http://<DENON AVR IP ADDRESS>/MainZone/index.put.asp?cmd0=PutZone_InputFunction%2FBD
+
+Select source - Internet radio:
+http://<DENON AVR IP ADDRESS>/MainZone/index.put.asp?cmd0=PutZone_InputFunction%2FIRadio
+
+Power on:
+http://<DENON AVR IP ADDRESS>/MainZone/index.put.asp?cmd0=PutZone_OnOff%2FON
+
+Power Off:
+http://<DENON AVR IP ADDRESS>/MainZone/index.put.asp?cmd0=PutZone_OnOff%2OFF
+

@@ -1,0 +1,9 @@
+volume up
+louder
+volume down
+softer
+mute on
+mute off
+power on
+power off
+                    

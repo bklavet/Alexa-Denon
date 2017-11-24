@@ -1,0 +1,13 @@
+{
+  "intents": [
+    {
+      "intent": "DENONIntent",
+      "slots": [
+        {
+          "name": "Control",
+          "type": "Control_List"
+        }
+      ]
+    }
+  ]
+}

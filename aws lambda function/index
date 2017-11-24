@@ -1,0 +1,99 @@
+var http = require('http'); // if going through a proxy that uses SSL change to "require('https');"
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+var local_ip = 'XXX.XXX.XXX.XXX';
+//externalIP or FQDN //////////////////////////////////////////////////////////////////////////
+//var local_ip = '<some fqdn>';
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * App ID for the skill
+ */
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+var APP_ID = "amzn1.ask.skill.[App ID]"; 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+* The AlexaSkill prototype and helper functions
+ */
+var AlexaSkill = require('./AlexaSkill');
+   
+var DENONControl = function () {
+    AlexaSkill.call(this, APP_ID);
+};
+
+
+// Extend AlexaSkill
+DENONControl.prototype = Object.create(AlexaSkill.prototype);
+DENONControl.prototype.constructor = DENONControl;
+
+//Ignore Certificate errors if using HTTPS communication
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
+DENONControl.prototype.intentHandlers = {
+        DENONIntent: function (intent, session, response) {
+        
+        //No matter what she wants to tell you her opinion.
+        
+        function satisfyAlexa() {
+                        response.tell("OK");
+                        };
+        
+        // Obtain User Intent
+        switch(intent.slots.Control.value) {
+                
+                // Same button is used
+				case "volume up":
+				case "louder":
+                      path = '/MainZone/index.put.asp?cmd0=PutMasterVolumeBtn/>';
+                break;
+           
+				case "volume down":
+				case "softer":
+                       path = '/MainZone/index.put.asp?cmd0=PutMasterVolumeBtn/<';
+                break;
+				
+				case "mute on":
+                        path = '/MainZone/index.put.asp?cmd0=PutMasterVolumeMute/>on'
+                break;
+				
+				case "mute off":
+                        path = '/MainZone/index.put.asp?cmd0=PutMasterVolumeMute/>off';
+                break;
+				
+				case "power on":
+                       path = '/MainZone/index.put.asp?cmd0=PutZone_OnOff/ON';
+                break;
+	
+				case "power off":
+                       path = '/MainZone/index.put.asp?cmd0=PutZone_OnOff/OFF';
+                break;
+				
+
+				default:
+                
+                response.tell("I didn't understand.");
+        break;
+
+				
+        } 
+		var options = {
+                     host: local_ip,
+                     port: 80, // default port for web interface port 23 also refrenced to rs232
+                     path: '' + path, // Modify if path is prefixed 
+                     method: 'GET' //, //(remove first comment slashes if using the "auth" option below)
+					 // auth: 'username:password' // this is used if going through authenticated proxy (this is BASIC AUTH)
+                    };
+          var req = http.request(options, satisfyAlexa);
+          req.end();						
+        }
+}
+
+
+exports.handler = function (event, context) {
+       
+        var denonControl = new DENONControl();
+        denonControl.execute(event, context);
+        
+};
