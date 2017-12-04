@@ -80,7 +80,7 @@ DENONControl.prototype.intentHandlers = {
         } 
 		var options = {
                      host: local_ip,
-                     port: 80, // default port for web interface port 23 also refrenced to rs232
+                     port: 80, // default port other options may be Router Ports: 3813, 443, 8080, 5020, port 23 (telnet)
                      path: '' + path, // Modify if path is prefixed 
                      method: 'GET' //, //(remove first comment slashes if using the "auth" option below)
 					 // auth: 'username:password' // this is used if going through authenticated proxy (this is BASIC AUTH)
